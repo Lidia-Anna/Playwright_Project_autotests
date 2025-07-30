@@ -4,8 +4,10 @@ test('Verify login with valid credentials', async ({ page }) => {
   await page.goto('/auth/login');
   await page.getByTestId('email').fill('customer@practicesoftwaretesting.com');
   await page.getByTestId('password').fill('welcome01');
+  await page.waitForTimeout(1000);
   await page.getByTestId('login-submit').click();
   await expect(page).toHaveURL('/account');
   await expect(page.getByTestId('page-title')).toContainText('My account');
   await expect(page.getByTestId('nav-menu')).toContainText('Jane Doe');
+  await page.waitForTimeout(1000);
 });
