@@ -33,7 +33,7 @@ export default defineConfig({
     trace: {
       mode:'on'
     },
-    headless: false,
+    //headless: false,
   },
 
   /* Configure projects for major browsers */
