@@ -16,21 +16,17 @@ The Playwright config (`playwright.config.ts`) is set up with:
 
 Before running the tests, install dependencies:
 
-```bash
-    npm install
+install
+    `npm install`
 
 Run all Tests:
-
-    npm test
+    `npm test`
 
 View Reports:
-
-    npx playwright show-report
+    `npx playwright show-report`
 
 Tech Stack:
 
-    Playwright Test
-
-    TypeScript
-
-    Node.js
+- Playwright Test
+- TypeScript
+- Node.js

@@ -28,6 +28,9 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://practicesoftwaretesting.com',
     testIdAttribute: 'data-test',
+    launchOptions: {
+      slowMo:250,
+    },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: {
@@ -81,3 +84,7 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+function myFunk(myValue:string):void{
+console.log('Hello');
+}
