@@ -6,7 +6,7 @@ export class HomePage{
 
     constructor(page:Page){
     this.page= page;
-    this.productName = this.page.locator('a:has(h5:has-text("Combination Pliers"))');
+    this.productName = this.page.getByRole('heading', {name:' Combination Pliers '});
   }
     async openProductCard(): Promise<void>{
     await this.productName.click();
