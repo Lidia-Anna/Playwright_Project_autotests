@@ -6,7 +6,7 @@ export class HomePage{
 
     constructor(page:Page){
     this.page= page;
-    this.productName = this.page.getByRole('heading', {name:' Combination Pliers '});
+    this.productName = this.page.getByRole('heading', {name:' Slip Joint Pliers '});
   }
     async openProductCard(): Promise<void>{
     await this.productName.click();

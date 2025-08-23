@@ -5,7 +5,7 @@ export class ProductDetails{
     productName: Locator;
     productPrize: Locator;
     addToCartButton: Locator;
-    addToFavoritesButton: Locator;
+    //addToFavoritesButton: Locator;
 
   
     constructor(page:Page){
@@ -13,7 +13,7 @@ export class ProductDetails{
       this.productName = this.page.getByTestId('product-name');
       this.productPrize = this.page.getByTestId('unit-price');
       this.addToCartButton = this.page.getByTestId('add-to-cart');
-      this.addToFavoritesButton = this.page.getByTestId('add-to-favorites');
+      //this.addToFavoritesButton = this.page.getByTestId('add-to-favorites');
     }
 
 }
