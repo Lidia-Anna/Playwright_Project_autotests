@@ -5,7 +5,9 @@ export class ProductDetails{
     productName: Locator;
     productPrize: Locator;
     addToCartButton: Locator;
-    addToFavoritesButton: Locator;
+    alertMessage: Locator;
+    cartQuantity: Locator;
+    cardIcon: Locator;
 
   
     constructor(page:Page){
@@ -13,7 +15,9 @@ export class ProductDetails{
       this.productName = this.page.getByTestId('product-name');
       this.productPrize = this.page.getByTestId('unit-price');
       this.addToCartButton = this.page.getByTestId('add-to-cart');
-      this.addToFavoritesButton = this.page.getByTestId('add-to-favorites');
+      this.alertMessage = this.page.getByRole('alert', { name: 'Product added to shopping' });
+      this.cartQuantity = this.page.getByTestId('cart-quantity');
+      this.cardIcon = this.page.getByTestId('nav-cart');
     }
 
 }
