@@ -1,10 +1,11 @@
-//import { test, expect } from '@playwright/test';
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
 
 test('User can add product to cart and complete checkout with credit card', async ({loggedInApp: app }) => {
   
-  await app.page.goto('/');
+  await app.page.goto('/', { waitUntil: 'domcontentloaded' });
+  await app.page.waitForLoadState('load');
+
   // 1
   const gridName = (await app.homePage.firstCard.getByTestId('product-name').innerText()).trim();
   const gridPriceText = (await app.homePage.firstCard.getByTestId('product-price').innerText()).trim();
