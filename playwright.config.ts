@@ -41,11 +41,11 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    { name: 'setup', testMatch: /auth\.login\.spec\.ts/ },
+    //{ name: 'setup', testMatch: /auth\.login\.spec\.ts/ },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup'],
+      //dependencies: ['setup'],
     },
 
     // {
@@ -87,6 +87,3 @@ export default defineConfig({
   // },
 });
 
-function myFunk(myValue:string):void{
-console.log('Hello');
-}

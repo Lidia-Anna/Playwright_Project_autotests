@@ -19,5 +19,5 @@ export class ProductDetails{
       this.cartQuantity = this.page.getByTestId('cart-quantity');
       this.cardIcon = this.page.getByTestId('nav-cart');
     }
-
+    
 }

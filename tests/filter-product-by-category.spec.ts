@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-enum CategoryGroup {
-  HandTools = 'Hand Tools',
-  PowerTools = 'Power Tools',
-  Other = 'Other',
-}
+//enum CategoryGroup {
+// HandTools = 'Hand Tools',
+//  PowerTools = 'Power Tools',
+//  Other = 'Other',
+//}
 
 enum CategoryItem {
   Sander = 'Sander',
