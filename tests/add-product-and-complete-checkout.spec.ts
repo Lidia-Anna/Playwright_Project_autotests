@@ -1,5 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
+import { parsePrice } from '../utils/parse';
+import { getExpirationPlusMonths } from '../utils/expirationMonth';
 
 test('User can add product to cart and complete checkout with credit card', async ({loggedInApp: app }) => {
   
@@ -9,7 +11,7 @@ test('User can add product to cart and complete checkout with credit card', asyn
   // 1
   const gridName = (await app.homePage.firstCard.getByTestId('product-name').innerText()).trim();
   const gridPriceText = (await app.homePage.firstCard.getByTestId('product-price').innerText()).trim();
-  const gridPrice = app.parsePrice(gridPriceText);
+  const gridPrice = parsePrice(gridPriceText);
 
   await app.homePage.firstCard.click();
 
@@ -26,8 +28,8 @@ test('User can add product to cart and complete checkout with credit card', asyn
   const cartUnitPriceText = (await app.page.getByTestId('product-price').first().innerText()).trim();
   const cartTotalText = (await app.page.getByTestId('line-price').first().innerText()).trim();
 
-  const cartUnitPrice = app.parsePrice(cartUnitPriceText);
-  const cartTotal = app.parsePrice(cartTotalText);
+  const cartUnitPrice = parsePrice(cartUnitPriceText);
+  const cartTotal = parsePrice(cartTotalText);
 
   expect(cartTitle).toBe(gridName);
   expect(cartUnitPrice).toBeCloseTo(gridPrice, 2);
@@ -46,7 +48,7 @@ test('User can add product to cart and complete checkout with credit card', asyn
 
   await app.checkout.inputCreditCardNumber.fill('1111-1111-1111-1111');
 
-  await app.checkout.inputExpData.fill(app.checkout.getExpirationPlusMonths(3));
+  await app.checkout.inputExpData.fill(getExpirationPlusMonths(3));
   await app.checkout.inputCvv.fill('111');
   await app.checkout.inputCardName.fill('Jane Doe');
   await app.checkout.btnFinish.click();

@@ -1,5 +1,6 @@
 import { test as base} from '@playwright/test';
 import { AllPages } from './pages/allPages.page';
+import { USER } from './credentials';
 
 type MyFixtures = {
   app: AllPages;
@@ -14,8 +15,8 @@ export const test = base.extend<MyFixtures>({
   loggedInApp: async ({ app }, use) => {
     await app.page.goto('/auth/login'); 
     await app.loginPage.performLogin(
-      'customer@practicesoftwaretesting.com',
-      'welcome01'
+      USER.email,
+      USER.password
     );
     await use(app);
   },
