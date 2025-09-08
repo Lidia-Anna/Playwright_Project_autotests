@@ -5,8 +5,7 @@ import { getExpirationPlusMonths } from '../utils/expirationMonth';
 
 test('User can add product to cart and complete checkout with credit card', async ({loggedInApp: app }) => {
   
-  await app.page.goto('/', { waitUntil: 'domcontentloaded' });
-  await app.page.waitForLoadState('load');
+  await app.page.goto('/');
 
   // 1
   const gridName = (await app.homePage.firstCard.getByTestId('product-name').innerText()).trim();
@@ -37,7 +36,8 @@ test('User can add product to cart and complete checkout with credit card', asyn
   //3
   await app.checkout.btnProceed.click();
   //4
-  await expect(app.checkout.logInMessage).toBeVisible();
+  await app.page.waitForLoadState('load');
+  await expect(app.checkout.btnProceed2).toBeVisible();
   await app.checkout.btnProceed2.click();
   //5
   await app.checkout.inputState.fill('test');

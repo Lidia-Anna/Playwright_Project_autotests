@@ -1,11 +1,12 @@
 import { Locator, Page } from '@playwright/test';
+//import { USER } from '../credentials';
 
 export class Checkout{
     page: Page;
     productQuantity: Locator;
     productTitle: Locator;
     btnProceed: Locator;
-    logInMessage: Locator;
+    //logInMessage: Locator;
     btnProceed2: Locator;
     inputState: Locator;
     inputPostalCode: Locator;
@@ -25,7 +26,6 @@ export class Checkout{
           this.productQuantity = this.page.getByTestId('product-quantity');
           this.productTitle = this.page.getByTestId('product-title');
           this.btnProceed = this.page.getByTestId('proceed-1');
-          this.logInMessage = this.page.getByText('Hello Jane Doe, you are already logged in. You can proceed to checkout.');
           this.btnProceed2 = this.page.getByTestId('proceed-2');
           this.inputState = this.page.getByTestId('state');
           this.inputPostalCode = this.page.getByTestId('postal_code');
