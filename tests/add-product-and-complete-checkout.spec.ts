@@ -3,7 +3,7 @@ import { test } from '../fixtures';
 import { parsePrice } from '../utils/parse';
 import { getExpirationPlusMonths } from '../utils/expirationMonth';
 
-test('User can add product to cart and complete checkout with credit card', async ({loggedInApp: app }) => {
+test('User can add product to cart and complete checkout with credit card', async ({ app }) => {
   
   await app.page.goto('/');
 

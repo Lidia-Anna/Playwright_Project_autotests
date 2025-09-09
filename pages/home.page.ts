@@ -4,11 +4,13 @@ export class HomePage{
   page: Page;
     productName: Locator;
     firstCard: Locator;
+    productsCard: Locator;
 
     constructor(page:Page){
     this.page= page;
     this.firstCard = this.page.locator('a.card').first();
     this.productName = this.page.getByRole('heading', {name:' Slip Joint Pliers '});
+    this.productsCard = this.page.getByTestId(/^product-[A-Za-z0-9-]+$/).and(this.page.locator('a.card'));
   }
     async openProductCard(): Promise<void>{
     await this.productName.click();}

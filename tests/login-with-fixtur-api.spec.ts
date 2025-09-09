@@ -1,0 +1,7 @@
+import { expect, loggedInUser } from '../fixtures';
+
+loggedInUser('Verify login with valid credentials with API', async ({ app }) => {
+    await app.page.goto('/account');
+    await expect(app.accountPage.pageTitle).toContainText('My account');
+    await expect(app.accountPage.header.navMenu).toContainText('Jane Doe');
+});
