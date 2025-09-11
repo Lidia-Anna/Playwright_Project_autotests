@@ -1,6 +1,6 @@
-import { EMAIL } from './config/baseConfig';
+import { EMAIL, USER_PASSWORD } from './config/baseConfig';
 export const USER = {
   email: EMAIL,
-  password: 'welcome01',
+  password: USER_PASSWORD,
   name: 'Jane Doe'
 };
