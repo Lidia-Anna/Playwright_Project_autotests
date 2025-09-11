@@ -5,7 +5,7 @@ import { parsePrice } from '../utils/parse';
 //import { USER } from '../credentials';
 //import { CARDDETAILS } from '../testData/creditCardDetails';
 
-test('User can add product to cart and complete checkout with credit card', async ({ app }) => {
+test('User can add product to cart and complete checkout with credit card @smoke', async ({ app }) => {
   
   await app.page.goto('/');
 

@@ -4,7 +4,7 @@ enum CategoryItem {
   Sander = 'Sander',
 }
 
-test.describe('Verify user can filter products by category', () => {
+test.describe('Verify user can filter products by category @regression', () => {
   test('user can filter by Sander and see only Sander products', async ({ page }) => {
 
     await page.goto('/');

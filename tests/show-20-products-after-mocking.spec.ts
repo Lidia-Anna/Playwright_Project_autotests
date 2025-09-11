@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/home.page';
 import json from '../testData/mocking.json';
 
-test('displays 20 product cards with mocked data', async ({ page }) => {
+test('displays 20 product cards with mocked data @regression', async ({ page }) => {
   const homePage = new HomePage(page);
   await page.route('**/products*', async (route) => {
     await route.fulfill({

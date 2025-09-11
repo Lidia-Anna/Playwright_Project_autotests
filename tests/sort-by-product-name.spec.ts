@@ -5,7 +5,7 @@ const variants = [
   { value: 'name,desc', dir: 'desc' as const, label: 'Name (Z - A)' },
 ];
 
-test.describe('Verify user can perform sorting by name (asc & desc)', () => {
+test.describe('Verify user can perform sorting by name (asc & desc) @regression', () => {
   for (const v of variants) {
     test(`should sort products by ${v.label}`, async ({ page }) => {
       await page.goto('/');

@@ -5,7 +5,7 @@ const variants = [
   { value: 'price,desc', dir: 'desc' as const, label: 'Price (High - Low)' },
 ];
 
-test.describe('Verify user can perform sorting by price (asc & desc)', () => {
+test.describe('Verify user can perform sorting by price (asc & desc) @regression', () => {
   for (const v of variants) {
     test(`should sort products by ${v.label}`, async ({ page }) => {
 
