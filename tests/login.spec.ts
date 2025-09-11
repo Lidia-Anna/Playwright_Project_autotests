@@ -3,7 +3,7 @@ import { LoginPage } from '../pages/login.page';
 import { AccountPage } from '../pages/account.page';
 import { USER } from '../credentials';
 
-test('Verify login with valid credentials', async ({ page }) => {
+test('Verify login with valid credentials @smoke', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await page.goto('/auth/login');
   await loginPage.performLogin(USER.email, USER.password);
