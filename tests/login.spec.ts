@@ -10,5 +10,5 @@ test('Verify login with valid credentials', async ({ page }) => {
   await expect(page).toHaveURL('/account');
   const accountPage = new AccountPage(page);
   await expect(accountPage.pageTitle).toContainText('My account');
-  await expect(accountPage.header.navMenu).toContainText('Jane Doe');
+  await expect(accountPage.header.navMenu).toContainText(USER.name);
 });

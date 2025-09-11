@@ -8,7 +8,9 @@ export class ProductDetails{
     alertMessage: Locator;
     cartQuantity: Locator;
     cardIcon: Locator;
-
+    productTitle: Locator;
+    productPrizes: Locator;
+    productLinePrice: Locator;
   
     constructor(page:Page){
       this.page= page;
@@ -18,6 +20,9 @@ export class ProductDetails{
       this.alertMessage = this.page.getByRole('alert', { name: 'Product added to shopping' });
       this.cartQuantity = this.page.getByTestId('cart-quantity');
       this.cardIcon = this.page.getByTestId('nav-cart');
+      this.productTitle = this.page.getByTestId('product-title');
+      this.productPrizes = this.page.getByTestId('product-price');
+      this.productLinePrice = this.page.getByTestId('line-price');
     }
     
 }
