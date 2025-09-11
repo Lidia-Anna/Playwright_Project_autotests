@@ -11,6 +11,7 @@ jobs:
     env:
       USER_EMAIL: ${{vars.EMAIL}}
       PASSWORD: ${{secrets.PASSWORD}}
+      USER_NAME: ${{vars.USER_NAME}}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
