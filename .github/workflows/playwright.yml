@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     env:
-        USER_EMAIL: ${{VARS.EMAIL}}
+        USER_EMAIL: 'customer@practicesoftwaretesting.com'
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
