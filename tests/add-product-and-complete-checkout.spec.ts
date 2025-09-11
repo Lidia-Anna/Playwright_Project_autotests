@@ -3,6 +3,7 @@ import { test } from '../fixtures';
 import { parsePrice } from '../utils/parse';
 import { getExpirationPlusMonths } from '../utils/expirationMonth';
 import { USER } from '../credentials';
+import { CARDDETAILS } from '../testData/creditCardDetails';
 
 test('User can add product to cart and complete checkout with credit card', async ({ app }) => {
   
@@ -47,10 +48,10 @@ test('User can add product to cart and complete checkout with credit card', asyn
 
   await app.checkout.selectCreditCard.selectOption('credit-card');
 
-  await app.checkout.inputCreditCardNumber.fill('1111-1111-1111-1111');
+  await app.checkout.inputCreditCardNumber.fill(CARDDETAILS.creditNumber);
 
   await app.checkout.inputExpData.fill(getExpirationPlusMonths(3));
-  await app.checkout.inputCvv.fill('111');
+  await app.checkout.inputCvv.fill(CARDDETAILS.creditCvv);
   await app.checkout.inputCardName.fill(USER.name);
   await app.checkout.btnFinish.click();
 //6
