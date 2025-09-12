@@ -32,7 +32,7 @@ export default defineConfig({
   use: {
     //baseEMAIL: EMAIL,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    trace: 'on',
+    trace: 'retain-on-failure',
     video: 'on-first-retry',
     //trace: 'on-first-retry',
     //video: 'on',

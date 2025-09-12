@@ -24,8 +24,7 @@ test('User can add product to cart and complete checkout with credit card @smoke
   await test.step('Open product details and add to cart', async () => {
     await app.homePage.firstCard.click();
 
-    const addToCartBtn = app.page.getByRole('button', { name: /add to cart/i });
-    await addToCartBtn.click();
+    await app.productDetails.addToCartBtn.click();
 
     const alert = app.page.getByRole('alert');
     await expect(alert).toBeHidden({ timeout: 8000 });
