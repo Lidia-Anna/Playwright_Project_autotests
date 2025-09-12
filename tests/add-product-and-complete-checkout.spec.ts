@@ -5,38 +5,49 @@ import { parsePrice } from '../utils/parse';
 //import { USER } from '../credentials';
 //import { CARDDETAILS } from '../testData/creditCardDetails';
 
-test('User can add product to cart and complete checkout with credit card', async ({ app }) => {
-  
-  await app.page.goto('/');
+test('User can add product to cart and complete checkout with credit card @smoke', async ({ app }) => {
 
-  // 1
-  const gridName = (await app.homePage.firstCardName.innerText()).trim();
-  const gridPriceText = (await app.homePage.firstCardPrice.innerText()).trim();
-  const gridPrice = parsePrice(gridPriceText);
+  await test.step('Open homepage', async () => {
+    await app.page.goto('/');
+  });
 
-  await app.homePage.firstCard.click();
+  let gridName: string;
+  let gridPriceText: string;
+  let gridPrice: number;
 
-  const addToCartBtn = app.page.getByRole('button', { name: /add to cart/i });
-  await addToCartBtn.click();
+  await test.step('Read product name and price from product grid', async () => {
+    gridName = (await app.homePage.firstCardName.innerText()).trim();
+    gridPriceText = (await app.homePage.firstCardPrice.innerText()).trim();
+    gridPrice = parsePrice(gridPriceText);
+  });
 
-  const alert = app.page.getByRole('alert');
-  await expect(alert).toBeHidden({ timeout: 8000 });
+  await test.step('Open product details and add to cart', async () => {
+    await app.homePage.firstCard.click();
 
-  // 2
-  await app.productDetails.cardIcon.click();
+    await app.productDetails.addToCartBtn.click();
 
-  const cartTitle = (await app.productDetails.productTitle.first().innerText()).trim();
-  const cartUnitPriceText = (await app.productDetails.productPrizes.first().innerText()).trim();
-  const cartTotalText = (await app.productDetails.productLinePrice.first().innerText()).trim();
+    const alert = app.page.getByRole('alert');
+    await expect(alert).toBeHidden({ timeout: 8000 });
+  });
 
-  const cartUnitPrice = parsePrice(cartUnitPriceText);
-  const cartTotal = parsePrice(cartTotalText);
+  await test.step('Open cart and verify product details and prices', async () => {
+    await app.productDetails.cardIcon.click();
 
-  expect(cartTitle).toBe(gridName);
-  expect(cartUnitPrice).toBeCloseTo(gridPrice, 2);
-  expect(cartTotal).toBeCloseTo(gridPrice, 2);
-  //3
-  await app.checkout.btnProceed.click();
+    const cartTitle = (await app.productDetails.productTitle.first().innerText()).trim();
+    const cartUnitPriceText = (await app.productDetails.productPrizes.first().innerText()).trim();
+    const cartTotalText = (await app.productDetails.productLinePrice.first().innerText()).trim();
+
+    const cartUnitPrice = parsePrice(cartUnitPriceText);
+    const cartTotal = parsePrice(cartTotalText);
+
+    expect(cartTitle).toBe(gridName);
+    expect(cartUnitPrice).toBeCloseTo(gridPrice, 2);
+    expect(cartTotal).toBeCloseTo(gridPrice, 2);
+  });
+
+  await test.step('Proceed to checkout', async () => {
+    await app.checkout.btnProceed.click();
+  });
   //4
   //await app.page.waitForLoadState('load');
   //await expect(app.checkout.btnProceed2).toBeVisible();

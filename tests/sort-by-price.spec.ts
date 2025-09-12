@@ -5,31 +5,42 @@ const variants = [
   { value: 'price,desc', dir: 'desc' as const, label: 'Price (High - Low)' },
 ];
 
-test.describe('Verify user can perform sorting by price (asc & desc)', () => {
+test.describe('Verify user can perform sorting by price (asc & desc) @regression', () => {
   for (const v of variants) {
     test(`should sort products by ${v.label}`, async ({ page }) => {
 
-      await page.goto('/');
+      await test.step('Open homepage', async () => {
+        await page.goto('/');
+      });
 
-      await page.getByTestId('sort').selectOption(v.value);
+      await test.step(`Select sorting option: ${v.label}`, async () => {
+        await page.getByTestId('sort').selectOption(v.value);
+      });
 
-      const priceLocator = page.getByTestId('product-price');
+      await test.step('Wait for product prices to be visible', async () => {
+        const priceLocator = page.getByTestId('product-price');
+        await expect(priceLocator.first()).toBeVisible({ timeout: 15_000 });
+      });
 
-      await expect(async () => {
-        const priceTexts = (await priceLocator.allTextContents()).map(s => s.trim());
+      await test.step(`Verify products are sorted by ${v.label}`, async () => {
+        const priceLocator = page.getByTestId('product-price');
 
-        const prices = priceTexts.map(t => {
-          const normalized = t.replace(/[^\d.,-]/g, '').replace(',', '.');
-          return parseFloat(normalized);
-        });
+        await expect(async () => {
+          const priceTexts = (await priceLocator.allTextContents()).map(s => s.trim());
 
-        expect(prices.length).toBeGreaterThan(1);
+          const prices = priceTexts.map(t => {
+            const normalized = t.replace(/[^\d.,-]/g, '').replace(',', '.');
+            return parseFloat(normalized);
+          });
 
-        let expected = [...prices].sort((a, b) => a - b);
-        if (v.dir === 'desc') expected = expected.reverse();
+          expect(prices.length).toBeGreaterThan(1);
 
-      expect(prices).toEqual(expected);
-      }).toPass(); 
+          let expected = [...prices].sort((a, b) => a - b);
+          if (v.dir === 'desc') expected = expected.reverse();
+
+          expect(prices).toEqual(expected);
+        }).toPass();
+      });
     });
   }
 });

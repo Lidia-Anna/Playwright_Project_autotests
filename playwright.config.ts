@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-
+//import{EMAIL} from './config/baseConfig';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -22,10 +22,21 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  //reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  reporter: [
+    ['html'],
+    ['json', {  outputFile: 'test-results.json' }],
+    ['dot']
+  ],
   use: {
+    //baseEMAIL: EMAIL,
     /* Base URL to use in actions like `await page.goto('/')`. */
+    trace: 'retain-on-failure',
+    video: 'on-first-retry',
+    //trace: 'on-first-retry',
+    //video: 'on',
+    screenshot: 'only-on-failure',
     baseURL: 'https://practicesoftwaretesting.com',
     testIdAttribute: 'data-test',
     launchOptions: {
@@ -33,9 +44,9 @@ export default defineConfig({
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: {
-      mode:'on'
-    },
+    //trace: {
+     // mode:'on'
+    //},
     //headless: false,
   },
 
@@ -47,6 +58,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
       //dependencies: ['setup'],
     },
+    //{
+    //  name: 'smoke',
+    //  grep: /@smoke/,   
+    //},
+    //{
+    //  name: 'regression',
+    //  grep: /@regression/,
+    //},
+    
 
     // {
     //  name: 'firefox',
@@ -78,6 +98,7 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
+  
 
   /* Run your local dev server before starting the tests */
   // webServer: {

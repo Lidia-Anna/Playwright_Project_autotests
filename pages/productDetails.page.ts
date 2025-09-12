@@ -11,6 +11,7 @@ export class ProductDetails{
     productTitle: Locator;
     productPrizes: Locator;
     productLinePrice: Locator;
+    addToCartBtn: Locator;
   
     constructor(page:Page){
       this.page= page;
@@ -23,6 +24,7 @@ export class ProductDetails{
       this.productTitle = this.page.getByTestId('product-title');
       this.productPrizes = this.page.getByTestId('product-price');
       this.productLinePrice = this.page.getByTestId('line-price');
+      this.addToCartBtn = this.page.getByRole('button', { name: /add to cart/i });
     }
     
 }
